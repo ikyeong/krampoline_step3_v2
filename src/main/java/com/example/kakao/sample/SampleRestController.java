@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SampleRestController {
 
     private final SampleDataRepository sampleDataRepository;
+    private final SampleDataProducer sampleDataProducer;
 
     @GetMapping("/test")
     public ResponseEntity<?> pingTest() {
@@ -23,5 +24,12 @@ public class SampleRestController {
     public ResponseEntity<?> dbTest() {
         List<SampleData> sampleDataList = sampleDataRepository.findAll();
         return ResponseEntity.ok(sampleDataList);
+    }
+
+    @GetMapping("/kafka")
+    public ResponseEntity<?> toKafkaTest() {
+        SampleData sampleData = new SampleData(1, "테스트테스트");
+        sampleDataProducer.kafkaPublish(sampleData);
+        return ResponseEntity.ok("ok");
     }
 }

@@ -26,6 +26,19 @@ spring:
     ansi:
       enabled: always
 
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-id-linknamu
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 0 # 오류시 재시도 횟수
+
 logging:
   level:
     '[com.example.kakao]': DEBUG
