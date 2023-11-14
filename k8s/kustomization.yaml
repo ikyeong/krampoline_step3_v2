@@ -2,6 +2,8 @@ namespace: default
 resources:
   - backend.yaml
   - mariadb.yaml
+  - kafka.yaml
+  - zookeeper.yaml
   - nginx.yaml
 configMapGenerator:
   - name: nginx
